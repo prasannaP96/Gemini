@@ -1,8 +1,7 @@
 name: Run app.py
 
 on:
-  schedule:
-    - cron: "54 2 * * *"
+  workflow_dispatch:
 
 jobs:
   run-app:
@@ -28,11 +27,4 @@ jobs:
 
       #4. Develop Branch
       - name: run in Develop
-        if: github.ref =='refs/heads/develop'
-        echo "using Secret Key: $DEV_SECRET" 
-
-
-      #4. Develop Branch
-      - name: run in Main
-        if: github.ref =='refs/heads/main'
-        echo "using Secret Key: $MAIN_SECRET" 
+        run: python app.py
