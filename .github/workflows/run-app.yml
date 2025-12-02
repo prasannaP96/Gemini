@@ -13,16 +13,26 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+
       #2. Setup python
       - name: Setup python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
+
       #3. Install dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      #4. Run app.py
-      - name: Run app.py
-        run: python app.py
+
+      #4. Develop Branch
+      - name: run in Develop
+        if: github.ref =='refs/heads/develop'
+        echo "using Secret Key: $DEV_SECRET" 
+
+
+      #4. Develop Branch
+      - name: run in Main
+        if: github.ref =='refs/heads/main'
+        echo "using Secret Key: $MAIN_SECRET" 
